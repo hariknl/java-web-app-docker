@@ -1,0 +1,7 @@
+FROM alpine
+RUN apk update && apk add openjdk9
+RUN apk add wget && apk add bash
+RUN mkdir -p /usr/local/tomcat
+RUN wget  https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.73/bin/apache-tomcat-8.5.73.tar.gz
+RUN tar -xvf  apache-tomcat-8.5.73.tar.gz &&  mv apache-tomcat-8.5.73 tomcat8 && chmod 777 -R tomcat8 && cd tomcat8
+CMD ["/tomcat8/bin/catalina.sh", "run"]
